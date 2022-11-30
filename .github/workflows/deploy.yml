@@ -85,6 +85,8 @@ jobs:
             sudo yum install docker -y          
             sudo yum install awscli -y
             sudo $(aws ecr get-login --no-include-email --region us-east-1);
+            sudo systemctl enable docker.service
+            sudo systemctl start docker.service
             sudo docker stop myappcontainer || true
             sudo docker rm myappcontainer || true
             sudo docker pull $REGISTRY/$REPOSITORY:$IMAGE_TAG
